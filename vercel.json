@@ -1,0 +1,8 @@
+{
+  "framework": null,
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "vercel-static",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

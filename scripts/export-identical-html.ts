@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -47,6 +47,7 @@ try {
   const fontCss = `@font-face{font-family:'Funnel Display';font-style:normal;font-weight:300 800;font-display:swap;src:url(data:font/woff2;base64,${funnelLatin.toString("base64")}) format('woff2')} :root{--font-funnel:'Funnel Display';}`;
   const presentationCss = `.offline-presentation .topbar{position:sticky;top:0;z-index:20}.offline-presentation .sidebar{z-index:30}.offline-presentation .shell-page-title{scroll-margin-top:90px}@media print{.offline-presentation .sidebar,.offline-presentation .topbar,.offline-presentation .shell-actions,.offline-presentation .enterprise-toolbar{display:none!important}.offline-presentation .app-shell{display:block}.offline-presentation .content{max-width:none;padding:18px}.offline-presentation .panel,.offline-presentation .enterprise-kpis article{break-inside:avoid;box-shadow:none}}`;
   const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Presentación autónoma del modelo financiero YOL1"><title>YOL1 Financial Planning · Presentación para Finanzas</title><style>${fontCss}${styles}${presentationCss}</style></head><body><div id="root"></div><script>window.process={env:{NODE_ENV:"production"}};window.__YOL1_OFFLINE_API__=${safeJson(apiSnapshot)};</script><script>${script.replace(/<\/script/gi, "<\\/script")}</script></body></html>`;
+  await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, html, "utf8");
   console.log(outputPath);
 } finally {

@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:vercel": "npm run build && tsx scripts/export-identical-html.ts vercel-static/index.html",
     "start": "vinext start",
     "test": "npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs",
     "test:unit": "tsx --test tests/forecast-engine.test.ts tests/enterprise-engine.test.ts tests/b2c-engine.test.ts tests/smb-engine.test.ts tests/transversal-engine.test.ts tests/product-catalog.test.ts tests/opex-engine.test.ts tests/dashboard-engine.test.ts tests/providers-engine.test.ts tests/actuals-engine.test.ts tests/permissions.test.ts tests/scenarios-engine.test.ts",

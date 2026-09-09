@@ -43,4 +43,4 @@ yarn-error.log*
 /forecast_data.json
 /reprogrammed_plans.sql
 /tsconfig.tsbuildinfo
-/({id
+/vercel-static
