@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useMemo, useState } from "react";
+import { CashflowPeriodToggle } from "./CashflowPeriodToggle";
 import { calculateSmbForecast } from "../smb/engine";
 import { SMB_SEED } from "../smb/seed";
 import type { SmbPlan, SmbProduct } from "../smb/types";
@@ -111,6 +112,7 @@ export function SMBPlanner() {
   ];
 
   return <>
+    {activeTab === "cashflow" && <CashflowPeriodToggle calendar={forecast.calendar} sections={matrixSections} statuses={forecast.months.map((month) => month.pending)} revenueValues={revenueSeries} marginValues={marginSeries} formatValue={(value, percentage) => percentage ? percent.format(value) : usd.format(value / plan.clpPerUsd)} />}
     <div className="enterprise-toolbar"><div className={`save-state ${saveState}`}><i></i><span>{saveState === "saved" ? "Cambios guardados" : saveState === "dirty" ? "Cambios sin guardar" : saveState === "loading" ? "Guardando…" : "No se pudo conectar"}</span></div><button className="primary-action compact" type="button" onClick={savePlan} disabled={saveState === "loading"}>Guardar SMB</button></div>
     <nav className="enterprise-tabs" aria-label="Secciones del modelo SMB">{([['summary', 'Resumen gerencial'], ['products', 'Productos y supuestos'], ['growth', 'Drivers y crecimiento'], ['costs', 'Costos directos'], ['cashflow', 'Flujo de caja']] as [Tab, string][]).map(([id, label]) => <button key={id} className={activeTab === id ? "active" : ""} onClick={() => setActiveTab(id)} type="button">{label}</button>)}</nav>
 

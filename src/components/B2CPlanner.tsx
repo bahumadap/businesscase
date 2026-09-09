@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useMemo, useState } from "react";
+import { CashflowPeriodToggle } from "./CashflowPeriodToggle";
 import { calculateB2CForecast, mauAt } from "../b2c/engine";
 import { B2C_SEED } from "../b2c/seed";
 import type { B2CCost, B2CPlan, B2CProduct } from "../b2c/types";
@@ -59,6 +60,7 @@ export function B2CPlanner() {
   ];
 
   return <>
+    {activeTab === "cashflow" && <CashflowPeriodToggle calendar={forecast.calendar} sections={matrixSections} statuses={forecast.months.map((month) => month.pending)} revenueValues={revenueSeries} marginValues={marginSeries} formatValue={(value, percentage) => percentage ? percent.format(value) : usd.format(value / reportingFx)} />}
     <div className="enterprise-toolbar"><div className={`save-state ${saveState}`}><i></i><span>{saveState === "saved" ? "Cambios guardados" : saveState === "dirty" ? "Cambios sin guardar" : saveState === "loading" ? "Guardando…" : "No se pudo conectar"}</span></div><button className="primary-action compact" type="button" onClick={savePlan} disabled={saveState === "loading"}>Guardar B2C</button></div>
     <nav className="enterprise-tabs" aria-label="Secciones del modelo B2C">{([['summary', 'Resumen gerencial'], ['products', 'Productos y supuestos'], ['growth', 'Drivers y crecimiento'], ['costs', 'Costos directos'], ['cashflow', 'Flujo de caja']] as [Tab, string][]).map(([id, label]) => <button key={id} className={activeTab === id ? "active" : ""} onClick={() => setActiveTab(id)} type="button">{label}</button>)}</nav>
 

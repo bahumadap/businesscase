@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useMemo, useState } from "react";
+import { CashflowPeriodToggle } from "./CashflowPeriodToggle";
 import { calculateEnterpriseForecast } from "../enterprise/engine";
 import { ENTERPRISE_SEED } from "../enterprise/seed";
 import type { EnterprisePlan } from "../enterprise/types";
@@ -93,6 +94,7 @@ export function TransversalPlanner() {
   ];
 
   return <>
+    {activeTab === "cashflow" && <CashflowPeriodToggle calendar={forecast.calendar} sections={matrixSections} statuses={forecast.months.map((month) => month.pending)} revenueValues={revenueSeries} marginValues={marginSeries} formatValue={(value) => usd.format(value)} />}
     <div className="enterprise-toolbar"><div className={`save-state ${saveState}`}><i></i><span>{saveState === "saved" ? "Cambios guardados" : saveState === "dirty" ? "Cambios sin guardar" : saveState === "loading" ? "Guardando…" : "No se pudo conectar"}</span></div><button className="primary-action compact" type="button" onClick={savePlan} disabled={saveState === "loading"}>Guardar Transversal</button></div>
     <nav className="enterprise-tabs" aria-label="Secciones del modelo transversal">{([['summary','Resumen'],['interbank','Interbancaria'],['other','Otros negocios'],['cashflow','Flujo de caja']] as [Tab,string][]).map(([id,label]) => <button key={id} className={activeTab === id ? "active" : ""} type="button" onClick={() => setActiveTab(id)}>{label}</button>)}</nav>
 
