@@ -1,0 +1,10 @@
+<svg width="170" height="52" viewBox="0 0 170 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(2 1) scale(.78)">
+    <path d="M11 14C18 10 25 11 30 17L36 25L27 39L20 28C17 23 14 22 9 24L11 14Z" fill="#80EF0C"/>
+    <path d="M36 13L53 9L49 47C48 56 42 60 33 56L27 53L31 42L36 43L36 13Z" fill="#80EF0C"/>
+    <path d="M30 17L36 25L27 39L22 31L30 17Z" fill="#00D4AF"/>
+    <path d="M36 25L46 13L36 13V25Z" fill="#00D4AF"/>
+  </g>
+  <text x="52" y="32" fill="#F4EDDC" font-family="Arial, sans-serif" font-size="27" font-weight="800" letter-spacing="-1.5">Yol1</text>
+  <text x="110" y="31" fill="#80EF0C" font-family="Arial, sans-serif" font-size="11" font-weight="700">BUSINESS</text>
+</svg>
